@@ -3,6 +3,11 @@ const container = document.querySelector(".container")
 const outcomeText = document.querySelector(".outcome-text")
 const userOutcome = document.querySelector(".user-outcome img")
 const computerOutcome = document.querySelector(".computer-outcome img")
+const playerScore = document.querySelector("#player-score")
+const computerScore = document.querySelector("#computer-score")
+
+let playerWins = 0
+let computerWins = 0
 
 const computerSrcImages = ['images/pedra.png', 'images/papel.png', 'images/tesoura.png']
 
@@ -53,6 +58,18 @@ function handleOptionClick(event){
         const finalOutcome = winner[userComputerResult]
 
         outcomeText.textContent = userValue === computerValue ? 'Empate' : finalOutcome + ' Ganhou!'
+
+        // Verifica o resultado e atualiza o placar
+       if (finalOutcome === "Você") {
+            playerWins++; // Incrementa a vitória do jogador
+        } else if (finalOutcome === "Computador") {
+            computerWins++; // Incrementa a vitória do computador
+        }
+        
+        // Atualiza os elementos do placar na tela
+        playerScore.textContent = playerWins; // Atualiza o placar do jogador
+        computerScore.textContent = computerWins; // Atualiza o placar do computador
+
     }, 2000);
 }
 
